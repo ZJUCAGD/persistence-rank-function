@@ -2,9 +2,6 @@
 This is an implement of generating feature vectors of persistence rank function (PRF) 
 for vectorizing barcodes.
 
-This code is for CVPR2020 paper No.4792.
-The copyright is preserved by the authors.
-
 # requirements
 
 ## Matlab
