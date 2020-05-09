@@ -69,7 +69,7 @@ fprintf('Finish generating barcodes of test data\n');
 % -----------Generating PRF from Barcodes and Computing Feature vectors--------------
 % Parameter of Haar decomposition
 haar_n = 5;
-sam_num =8;
+sam_num = 8;
 
 % Using parallel computing
 
@@ -102,7 +102,11 @@ for i =2:trBCfile_num
 end
 X_samp = [X_samp(:,1);X_samp(:,2)];
 muhat = expfit(X_samp,0.05);
+[counts,centers] = hist(X_samp, 20);
 bd_xy = -log(0.01)*muhat;
+fprintf('mu: %.5f\n',muhat);
+clear('X_samp');
+fprintf('bd: %.5f\n',bd_xy);
 
 
 % haar basis 1D
@@ -112,7 +116,7 @@ haar_basis = haarBasisM(haar_n,sam_num);
 if ~exist(trVecpath,'dir')
     mkdir(trVecpath);
     fprintf('Start computing feature vectors of training data \n');
-    parfor i =1:trBCfile_num
+    for i =1:trBCfile_num
         file_name = trBCfiles(i).name;
         fullpath = fullfile(tr_bcPath, file_name);
         data = load(fullpath);   
@@ -138,7 +142,7 @@ fprintf('Finish computing feature vectors of training data \n');
 if ~exist(tsVecpath,'dir')
     mkdir(tsVecpath);
     fprintf('Start computing feature vectors of test data \n');
-    parfor i =1: tsBCfile_num
+    for i =1: tsBCfile_num
         file_name = tsBCfiles(i).name;
         fullpath = fullfile(ts_bcPath, file_name);
         data = load(fullpath);
@@ -184,7 +188,7 @@ if dr_flag
         data = load(filepath);
         M(i,:) = data(:,1)';
     end
-    label_tr = load(fullfile(dir_path,'TRAINlabel.txt'));
+    label_tr = load(fullfile(dir_path,'re_TRAINlabel.txt'));
     
     % To estimate reduced dimension via PCA(SVD)
     [~,~,latent] = pca(M);

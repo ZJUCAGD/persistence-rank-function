@@ -71,7 +71,7 @@ fprintf('Finish generating barcodes of test data\n');
 % -----------Generating PRF from Barcodes and Computing Feature vectors--------------
 % Parameter of Haar decomposition
 haar_n = 5;
-sam_num =8;
+sam_num = 10;
 
 % training data
 trVecpath = fullfile('./data3','vec_training');   
@@ -115,7 +115,7 @@ haar_basis = haarBasisM(haar_n,sam_num);
 if ~exist(trVecpath,'dir')
     mkdir(trVecpath);
     fprintf('Start computing feature vectors of training data \n');
-    parfor i =1:trBCfile_num
+    for i =1:trBCfile_num
         file_name = trBCfiles(i).name;
         fullpath = fullfile(tr_bcPath, file_name);
         data = load(fullpath);   
@@ -140,7 +140,7 @@ fprintf('Finish computing feature vectors of training data \n');
 if ~exist(tsVecpath,'dir')
     mkdir(tsVecpath);
     fprintf('Start computing feature vectors of test data \n');
-    parfor i =1: tsBCfile_num
+    for i =1: tsBCfile_num
         file_name = tsBCfiles(i).name;
         fullpath = fullfile(cd, ts_bcPath, file_name);
         data = load(fullpath);

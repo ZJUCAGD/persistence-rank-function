@@ -50,7 +50,7 @@ end
 
 % -----------Generating PRF from Barcodes and Computing Feature vectors--------------
 % Parameter of Haar decomposition
-tic
+
 
 haar_n = 5;
 sam_num = 8;
@@ -91,7 +91,7 @@ haar_basis = haarBasisM(haar_n,sam_num);
 if ~exist(trVecpath,'dir')
     mkdir(trVecpath);
     fprintf('Start computing feature vectors of training data \n');
-    parfor i =1:trBCfile_num
+    for i =1:trBCfile_num
         file_name = trBCfiles(i).name;
         fullpath = fullfile(trBCpath, file_name);
         data = load(fullpath);   
@@ -106,7 +106,7 @@ if ~exist(trVecpath,'dir')
         for j = 1:len
             fprintf(fileid, '%.20f\n', lambda_v(j));
         end
-         fprintf([file_name ' finished \n']);
+        % fprintf([file_name ' finished \n']);
         fclose(fileid);
     end
     fprintf('Finish computing feature vectors of training data \n');
@@ -116,7 +116,7 @@ end
 if ~exist(tsVecpath,'dir')
     mkdir(tsVecpath);
     fprintf('Start computing feature vectors of test data \n');
-    parfor i =1: tsBCfile_num
+    for i =1: tsBCfile_num
         file_name = tsBCfiles(i).name;
         fullpath = fullfile(cd, tsBCpath, file_name);
         data = load(fullpath);
@@ -131,7 +131,7 @@ if ~exist(tsVecpath,'dir')
         for j = 1:len
             fprintf(fileid, '%.20f\n', lambda_v(j));
         end
-         fprintf([file_name ' finished \n']);
+        % fprintf([file_name ' finished \n']);
         fclose(fileid);
     end
 end
@@ -277,4 +277,3 @@ else
         fprintf('vec_training or vec_test: no such directory.\n');
     end
 end
-toc

@@ -1,0 +1,10 @@
+Title of the submission:
+Vectorization of persistence barcode with applications in pattern classification of porous structures.
+
+This paper is submitted to Computer & Graphics.
+
+Authered by 
+Zhetong Dong, Chuanfeng Hu, Chi Zhou, and Hongwei Lin (the corresponding author).
+
+The operating system that supports the submitted code is 
+Windows 64-bit
